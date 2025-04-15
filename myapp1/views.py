@@ -10,7 +10,7 @@ from .utils import SimAgent
 @parser_classes([MultiPartParser, FormParser])
 def generate_caption(request):
     """
-    API endpoint for generating captions for images.
+    API endpoint for generating multiple caption options for images.
     
     POST request with:
         - image: Image file (required)
@@ -29,17 +29,17 @@ def generate_caption(request):
         image_data = image_file.read()
         file_name = image_file.name
         
-        # Get optional platform parameter
+        # Get optional platform paramet platformer
         platform = request.data.get('platform', 'instagram')
     
         # Initialize the AI agent
         sim_agent = SimAgent()
         
-        # Generate caption
+        # Generate caption options
         caption_result = sim_agent.generate_caption(
             image_data=image_data,
             platform=platform,
-            file_name=file_name
+            file_name=file_name,
         )
         
         # Convert the Pydantic object to a JSON-compatible dictionary
